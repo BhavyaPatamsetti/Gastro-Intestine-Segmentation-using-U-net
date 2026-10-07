@@ -1,118 +1,37 @@
-# 🧠 GI Segmentation AI Dashboard  
-### *Medical Image Segmentation using U-Net + Streamlit*
+# GI Image Segmentation with U-Net
 
-> Upload → Segment → Visualize → Analyze → Download
+An educational Streamlit dashboard that generates a binary segmentation mask and overlay from an uploaded image using a U-Net architecture.
 
----
+## What is included
 
-## 🚀 Overview
+- Resizes RGB inputs to 256 × 256 and normalizes pixel values.
+- Adjustable mask threshold, overlay opacity, and display size.
+- Shows segmented pixels, coverage, and model output scores.
+- Downloads masks and overlays as PNG files.
+- Includes a Kvasir-SEG training notebook.
 
-**GI Segmentation AI Dashboard** is an AI-powered medical imaging tool that uses a **U-Net deep learning model** to segment gastrointestinal structures from input images.
+## Getting started
 
-It transforms a simple image into:
-- 📊 Segmentation masks  
-- 🎯 Overlay visualizations  
-- 📈 Quantitative metrics  
-- 📥 Downloadable outputs  
+Use Python compatible with the pinned TensorFlow dependencies.
 
-All through a **clean, premium dashboard UI** built with Streamlit.
-
----
-
-## ✨ Features
-
-### 🧠 1. Deep Learning Model (U-Net)
-- Encoder–decoder architecture
-- Pixel-level segmentation
-- Supports medical image structures
-
----
-
-### 🖼️ 2. Smart Image Processing
-- Automatic resizing (256×256)
-- Normalization for model input
-- Real-time inference
-
----
-
-### 🎨 3. Visualization Dashboard
-- Original Image
-- Predicted Mask
-- Overlay (highlighted segmentation)
-
----
-
-### 🎛️ 4. Interactive Controls
-- Mask threshold tuning
-- Overlay opacity adjustment
-- Dynamic image sizing
-
----
-
-### 📊 5. Analytics & Metrics
-- Mask coverage (%)
-- Segmented pixel count
-- Average prediction confidence
-- Max confidence score
-
----
-
-### 🧾 6. AI-style Interpretation
-- Human-readable insights
-- Explains segmentation quality
-
----
-
-### 📥 7. Export Options
-- Download mask image
-- Download overlay image
-
----
-
-## 📂 Project Structure
-
-code/
-├── main.py  
-├── requirements.txt  
-├── segmentation.weights.h5  
-└── .venv/  
-
----
-
-## ⚙️ Installation & Setup
-
-```bash
-git clone "repo name"
-cd folder_name
-
-conda deactivate
-rm -rf .venv
-
-/opt/homebrew/bin/python3.11 -m venv .venv
+```sh
+python -m venv .venv
 source .venv/bin/activate
-
-pip install --upgrade pip
 pip install -r requirements.txt
-
-python -m streamlit run main.py
+streamlit run main.py
 ```
 
----
+Place compatible trained weights at `segmentation.weights.h5` in the root. Upload a JPG, JPEG, or PNG image. Training requires the notebook dependencies, including pandas and scikit-learn, in addition to the dashboard requirements.
 
-## 🛠️ Tech Stack
-- Streamlit  
-- TensorFlow / Keras  
-- OpenCV  
-- NumPy  
-- PIL  
+## Repository guide
 
----
+- `Gastrointestinal_img_segmentation.ipynb`
+- `Kvasir-SEG/`
+- `README.md`
+- `main.py`
+- `requirements.txt`
+- `segmentation.weights.h5`
 
-## ⚠️ Disclaimer
-Educational use only. Not for medical diagnosis.
+## Limitations and reproducibility
 
----
-
-## 👩‍💻 Author
-Radhi Sri Bhavya Patamsetti  
-GitHub: https://github.com/BhavyaPatamsetti  
+If weights are absent, the current app runs an untrained model and warns in the sidebar; its output is not meaningful segmentation. The training notebook contains machine-specific paths and a later `model.keras` loading cell that needs adaptation. Model scores and coverage are not validated diagnostic confidence. This project is for academic demonstration, not clinical use.
